@@ -38,4 +38,24 @@ namespace Utils {
 
         return ret;
     }
+
+    std::vector<std::string> splitString(std::string input, char delimiter) {
+        std::vector<std::string> ret;
+        std::string builder = "";
+
+        for (char c : input) {
+            if (c == delimiter) {
+                ret.push_back(builder);
+                builder = "";
+                continue;
+            }
+
+            builder += c;
+        }
+
+        if (input.at(input.length()-1) != delimiter)
+            ret.push_back(builder);
+
+        return ret;
+    }
 }
