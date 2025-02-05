@@ -1,4 +1,4 @@
-sources = ../Utils.cpp main.cpp
+sources = main.cpp
 
 run:
 	g++ $(sources) -o main

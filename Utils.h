@@ -5,12 +5,41 @@
 #include <vector>
 #include <memory>
 #include <functional>
+#include <fstream>
+#include <regex>
 
 namespace Utils
 {
-    std::vector<std::string> readInput(std::string);
+    std::vector<std::string> readInput(std::string filePath) {
+        std::ifstream file(filePath);
+        std::vector<std::string> lines;
 
-    std::string* matches(std::string, std::string, int&);
+        while (true) {
+            std::string line;
+            std::getline(file, line);
+
+            if (!file.eof()) lines.push_back(line);
+            else break;
+        }
+
+        file.close();
+
+        return lines;
+    }
+
+    std::string* matches(std::string haystack, std::string needle, int &size) {
+        std::smatch matches;
+
+        if (!std::regex_search(haystack, matches, std::regex(needle))) return nullptr;
+        
+        std::string* ret = new std::string[matches.size()];
+        
+        for (int i = 0; i < matches.size(); ++i) ret[i] = matches[i];
+
+        size = matches.size();
+
+        return ret;
+    }
 
     template <typename T = std::string>
     std::vector<T> splitString(std::string input,
