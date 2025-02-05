@@ -21,12 +21,10 @@ void part1(std::vector<std::string> lines) {
     int safeLines = 0;
 
     for (const std::string line : lines) {
-        std::vector<std::string> numStrs = Utils::splitString(line);
-        const int SIZE = numStrs.size();
-        int nums[SIZE];
+        auto stoi_bound = [](const std::string& str) { return std::stoi(str); };
+        auto nums = Utils::splitString<int>(line, ' ', stoi_bound);
+        const int SIZE = nums.size();
         
-        for (int i = 0; i < SIZE; ++i) 
-            nums[i] = std::stoi(numStrs[i]);
 
         bool increasing = nums[0] < nums[1];
         bool cont = false;

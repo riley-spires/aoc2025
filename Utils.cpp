@@ -1,10 +1,12 @@
 #include "Utils.h"
 
+#include <iostream>
 #include <algorithm>
 #include <vector>
 #include <regex>
 #include <fstream>
 #include <memory>
+#include <functional>
 
 namespace Utils {
 
@@ -39,23 +41,13 @@ namespace Utils {
         return ret;
     }
 
-    std::vector<std::string> splitString(std::string input, char delimiter) {
-        std::vector<std::string> ret;
-        std::string builder = "";
-
-        for (char c : input) {
-            if (c == delimiter) {
-                ret.push_back(builder);
-                builder = "";
-                continue;
-            }
-
-            builder += c;
-        }
-
-        if (input.at(input.length()-1) != delimiter)
-            ret.push_back(builder);
-
-        return ret;
-    }
 }
+
+/*int main() {*/
+/*    std::string sentence = "hehe hoo ha";*/
+/**/
+/*    auto words = Utils::splitString<std::string>(sentence);*/
+/**/
+/**/
+/*    for (auto word : words) std::cout << word << std::endl;*/
+/*}*/
